@@ -1,4 +1,4 @@
--- 1
+-- 1 Streamers et Creneau 
 SELECT
     s.pseudo,
     c.date_debut_autorisee,
@@ -10,7 +10,7 @@ ORDER BY
     s.pseudo ASC,
     c.date_debut_autorisee ASC;
 
--- 2
+-- 2  Stream avec infos du streamer et creneau
 SELECT
     st.titre,
     s.pseudo,
@@ -25,12 +25,12 @@ ORDER BY
     date_creneau ASC,
     s.pseudo ASC;
 
--- 3
-SELECT *
-FROM Defi
-WHERE (etat_validation = TRUE) AND (montant_palier > 5000 ) 
+-- 3 Defis et leurs participant  : affiche l'intitulé du défi, les pseudonymes des streamers y participant, et le montant
+SELECT d.intitule, d.montant_palier, s.pseudo
+FROM participant_defi pd
+JOIN defi d, 
+    ON d.Id_defi = pd.Id_defi
+JOIN Streamer s
+    ON s.Id_Streamer = pd.Id_Streamer
 
--- 4
-SELECT *
-FROM stream
-WHERE (date_fin_effective is NULL ) 
+
